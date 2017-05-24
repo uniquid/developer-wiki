@@ -11,7 +11,7 @@ The Proveder send, across an **RPC** functionality to the user.
 The functions are identified by a number in range  between 0 and 143.
 The functions are divided into two separeted groups:
 
-* [**System Reserved**](systemreserved.md):  range   **[0,31]** are reserved for framework managment 
+* [**System Reserved**](documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment 
 * **User Defined** : range **[32,143]**  are reserved to be implemented in the applicaiton business layer.
 
 Every Entity has  the provider functionality (almost for the System Reserved functions)
@@ -62,6 +62,24 @@ Each Entity has an **Identity** that is determined by possession of the **privat
 This Private Key can generate the bitcoin address present in transaction.
 For each transaction the address must be a new one both for the Provider and the User.
 The addresses generation is defined trought the BIP32 standard.
+BIP32
+---
+The addresses generation is base on BIP Standard. 
+This way allow the system to generate a deterministic hierarchy of key starting from a **Seed**.
+This Seed is generated at the first run of the Entity and is based on a strong **RNG**.
+This is also the reason cause that Seed could be cosindered the **Identity of the Entity**.
+
+Below is reported how the BIP32's hierarchy is used inside the Uniquid Framework.
+
+* **m/44'/0'** Path for the **XPub** exported in Imprinting phase.
+* **m/44'/0'/0/0** is the point from where start the hierarchy dedicated to the Provider
+* **m/44'/0'/0/0/0/0** is the address where is payed the **first charge** (Imprinting). Is also the address for the **first contract like Provider** with change address set on **m/44'/0'/0/0/1/0**.
+* **m/44'/0'/0/0/0/n** are the address where send the charge. UTXO on these addresses can be used as second input in a contract. 
+* **m/44'/0'/0/0/1/n** are the addresses for the Change of the contracts. From these addresses are generated all conracts after the first.
+* **m/44'/0'/0/1/0/n** are the addresses where the token for the User's contracts are sened.
+
+
+This schema is **mandatory** like is mandatory that **no address can be appear in more than one contract**.
 
 ___
 Imprinting

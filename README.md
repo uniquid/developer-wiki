@@ -4,6 +4,6 @@ Index
 ------------
 
 
-* [Architecture](architecture.md)
-* [Repository List](repository.md)
-* [Testing Seed](seeds.md)
+* [Architecture](documents/architecture.md)
+* [Repository List](documents/repository.md)
+* [Testing Seed](documents/seeds.md)
