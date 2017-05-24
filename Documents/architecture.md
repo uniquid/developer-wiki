@@ -63,6 +63,7 @@ This Private Key can generate the bitcoin address present in transaction.
 For each transaction the address must be a new one both for the Provider and the User.
 The addresses generation is defined trought the BIP32 standard.
 
+___
 BIP32
 ---
 The addresses generation is base on BIP Standard. 
