@@ -11,7 +11,7 @@ The Proveder send, across an **RPC** functionality to the user.
 The functions are identified by a number in range  between 0 and 143.
 The functions are divided into two separeted groups:
 
-* [**System Reserved**](documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment 
+* [**System Reserved**](Documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment 
 * **User Defined** : range **[32,143]**  are reserved to be implemented in the applicaiton business layer.
 
 Every Entity has  the provider functionality (almost for the System Reserved functions)
@@ -58,10 +58,11 @@ The **bitmask** define is a function is accessible (**1**) or denied (**0**) fro
 ___
 Identity
 --------
-Each Entity has an **Identity** that is determined by possession of the **private key** that is never exposed out of the entity's boundaries .
+Each Entity has an **Identity** that is determined by possession of the **private key** that is never exposed out of the entity's boundaries.
 This Private Key can generate the bitcoin address present in transaction.
 For each transaction the address must be a new one both for the Provider and the User.
 The addresses generation is defined trought the BIP32 standard.
+
 BIP32
 ---
 The addresses generation is base on BIP Standard. 
