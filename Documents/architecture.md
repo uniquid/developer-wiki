@@ -104,3 +104,53 @@ So, once that the first contract was signed, the **imprinting contract** went, i
 The orchestrator is, foornm this moment, allowed to manage the creation of the Entity's contracts.
 ___
 
+Message and RPC
+---
+The UniquID framework define the structure of the message used to request the function's execution.<br>
+The channel is not defined inside the framwork to grant the maximum interoperability between all system's actors.<br>
+The structure of the messages and the RPC is based on **JSON-RPC**.<br>
+In the communication protocol the User send a request and wait a response from the Provider.
+All messages are in JSON format.
+
+### Request
+```
+{
+    "sender":"sender-address", 
+    "body":{
+        "method":n, 
+        "params":"param-string", 
+        "id":nonce
+        }
+} 
+```
+
+Where:<br>
+* **sender**: is the address with wich the User is presented to the Provider
+* **method**: is an interger and is the number of the function called
+* **params**: is the parameter passed to the function invoked. Coud be a structured JSON. The interpretation of the params value is demanded to the immplementation of the method.
+* **id**: is a **nonce** that must correspond with the same parameter on response. Keep a relationship between request and response.
+
+
+### Response
+```
+{
+	"sender": "sender-address",
+	"body": {
+		"result": "res-string",
+		"error": err,
+		"id": nonce
+	}
+}
+```
+Where:<br>
+* **sender**: is the Provider Address of the contract with wich the Provider has granted the excution of the requested function.
+* **result**: is the result of the function invoked.Coud be a structured JSON. The interpretation of the params value is demanded to the immplementation of the method.Errors form the method must be returned in this string.
+* **error**: is number that report a message error (i.e. Invalid JSON). If the message is correct, decodified, exist a contract that allow the function execution and the function was executed then this value is 0.
+* **id**: is a **nonce** that must correspond with the same parameter on request. Keep a relationship between request and response.
+
+###Process
+When the Provider Entity receive a reqeust, it must first verify that there is a contract kinking it to the sender address.
+If the conract exist, it must verify if the bit correspondent to the bit correponding to the requested method on the bitmask of the contract is setted to 1 (one).
+Only if this last check is ok the provider can send in execution the requested funciton.
+In the reply message the sender must be valued with the address that binds provider and user in the affected contract. 
+If the contract doesnot exist, the providere does not have to reply.
