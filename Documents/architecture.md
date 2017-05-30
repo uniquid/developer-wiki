@@ -58,17 +58,17 @@ The **bitmask** define is a function is accessible (**1**) or denied (**0**) fro
 ___
 Identity
 --------
-Each Entity has an **Identity** that is determined by possession of the **private key** that is never exposed out of the entity's boundaries.
-This Private Key can generate the bitcoin address present in transaction.
-For each transaction the address must be a new one both for the Provider and the User.
+Each Entity has an **Identity** that is determined by possession of the **private key** that is never exposed out of the entity's boundaries.<br>
+This Private Key can generate the bitcoin address present in transaction.<br>
+For each transaction the address must be a new one both for the Provider and the User.<br>
 The addresses generation is defined trought the BIP32 standard.
 
 ___
 BIP32
 ---
-The addresses generation is base on BIP Standard. 
-This way allow the system to generate a deterministic hierarchy of key starting from a **Seed**.
-This Seed is generated at the first run of the Entity and is based on a strong **RNG**.
+The addresses generation is base on BIP Standard.<br>
+This way allow the system to generate a deterministic hierarchy of key starting from a **Seed**.<br>
+This Seed is generated at the first run of the Entity and is based on a strong **RNG**.<br>
 This is also the reason cause that Seed could be cosindered the **Identity of the Entity**.
 
 Below is reported how the BIP32's hierarchy is used inside the Uniquid Framework.
@@ -86,17 +86,21 @@ This schema is **mandatory** like is mandatory that **no address can be appear i
 ___
 Imprinting
 ----------
-When an Entity has created his identity, no one trnasaction on the block chain envolve his addresses.
-**Imprinting** is the name of the processthat allow an other Entity, called **Imprinter**, that obtain the control of the new Entity.
+When an Entity has created his identity, no one trnasaction on the block chain envolve his addresses.<br>
+**Imprinting** is the name of the processthat allow an other Entity, called **Imprinter**, that obtain the control of the new Entity.<br>
 
-The Imprinter take, from the new Entity, the Xpub at path **m/44'/0'**  and the **Name** used to identify the entity on the communication channel use for the message delivery.
+The Imprinter take, from the new Entity, the Xpub at path **m/44'/0'**  and the **Name** used to identify the entity on the communication channel use for the message delivery.<br>
 Obtained the Xpub the Imprinter send some token at address **m/44'/0'/0/0/0/0**.
 
 This first transaction is called **Imprinting Contract** 'cause the Entity that send token acquire the access to all **system reserved functions**.
-From this moment the Imprinter is the only owner of the entity imprinted.
-To allow a third  entity to manage the one just imprinted the imprinter send to imprinted entity a contract to  **sign**  where this third entity (called **orchestrator** ) is allowed to manage the system reserved functions. 
+
+From this moment the Imprinter is the only owner of the entity imprinted.<br>
+To allow a third  entity to manage the one just imprinted the imprinter send to imprinted entity a contract to  **sign**  where this third entity (called **orchestrator** ) is allowed to manage the system reserved functions. <br>
+
 After that the Xpub and the unique name are transferred **from** imprinter **to** the orchestrator.
+
 So, once that the first contract was signed, the **imprinting contract** went, implictly, revoked.
+
 The orchestrator is, foornm this moment, allowed to manage the creation of the Entity's contracts.
 ___
 
