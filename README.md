@@ -18,3 +18,9 @@ If you find an issue and want fix it open an issue first then fix the code.
 Whan you've changed the code you can create a pull request.
 
 ___
+
+Version 0.1.0
+---
+### Changelog
+* Added version on Readme footer
+___
