@@ -86,4 +86,17 @@ This schema is **mandatory** like is mandatory that **no address can be appear i
 ___
 Imprinting
 ----------
+When an Entity has created his identity, no one trnasaction on the block chain envolve his addresses.
+**Imprinting** is the name of the processthat allow an other Entity, called **Imprinter**, that obtain the control of the new Entity.
+
+The Imprinter take, from the new Entity, the Xpub at path **m/44'/0'**  and the **Name** used to identify the entity on the communication channel use for the message delivery.
+Obtained the Xpub the Imprinter send some token at address **m/44'/0'/0/0/0/0**.
+
+This first transaction is called **Imprinting Contract** 'cause the Entity that send token acquire the access to all **system reserved functions**.
+From this moment the Imprinter is the only owner of the entity imprinted.
+To allow a third  entity to manage the one just imprinted the imprinter send to imprinted entity a contract to  **sign**  where this third entity (called **orchestrator** ) is allowed to manage the system reserved functions. 
+After that the Xpub and the unique name are transferred **from** imprinter **to** the orchestrator.
+So, once that the first contract was signed, the **imprinting contract** went, implictly, revoked.
+The orchestrator is, foornm this moment, allowed to manage the creation of the Entity's contracts.
 ___
+
