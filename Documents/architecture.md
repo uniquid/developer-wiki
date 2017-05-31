@@ -148,9 +148,9 @@ Where:<br>
 * **error**: is number that report a message error (i.e. Invalid JSON). If the message is correct, decodified, exist a contract that allow the function execution and the function was executed then this value is 0.
 * **id**: is a **nonce** that must correspond with the same parameter on request. Keep a relationship between request and response.
 
-###Process
-When the Provider Entity receive a reqeust, it must first verify that there is a contract kinking it to the sender address.
-If the conract exist, it must verify if the bit correspondent to the bit correponding to the requested method on the bitmask of the contract is setted to 1 (one).
-Only if this last check is ok the provider can send in execution the requested funciton.
-In the reply message the sender must be valued with the address that binds provider and user in the affected contract. 
-If the contract doesnot exist, the providere does not have to reply.
+### Process
+When the Provider Entity receive a reqeust, it must first verify that there is a contract kinking it to the sender address.<br>
+If the conract exist, it must verify if the bit correspondent to the bit correponding to the requested method on the bitmask of the contract is setted to 1 (one).<br>
+Only if this last check is ok the provider can send in execution the requested funciton.<br>
+In the reply message the sender must be valued with the address that binds provider and user in the affected contract. <br>
+If the contract doesnot exist, the providere does not have to reply.<br>
