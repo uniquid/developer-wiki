@@ -11,7 +11,7 @@ The Proveder send, across an **RPC** functionality to the user.
 The functions are identified by a number in range  between 0 and 143.
 The functions are divided into two separeted groups:
 
-* [**System Reserved**](Documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment 
+* [**System Reserved**](../Documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment 
 * **User Defined** : range **[32,143]**  are reserved to be implemented in the applicaiton business layer.
 
 Every Entity has  the provider functionality (almost for the System Reserved functions)

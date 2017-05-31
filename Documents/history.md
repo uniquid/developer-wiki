@@ -1,3 +1,9 @@
+Version 0.1.2
+---
+### Changelog
+* Fixed wrong link inside architecture doc to system reserved doc.
+___
+
 Version 0.1.1
 ---
 ### Changelog
