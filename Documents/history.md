@@ -1,3 +1,9 @@
+Version 0.2.0
+---
+### Changelog
+* Added library design chapter.
+___
+
 Version 0.1.2
 ---
 ### Changelog
