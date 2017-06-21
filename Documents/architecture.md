@@ -3,13 +3,13 @@ Uniquid Architecture
 
 Introduction
 ------------
-The UniquID framwork is builded over the **Entities**.
-An Entity is any device or system that runnin the UniquID library.
+The UniquID framework is builded over the **Entities**.
+An Entity is any device or system that runs the UniquID library.
 In every entity we can detect two kind of functionality: **Provider** and **User**.
-The Proveder send, across an **RPC** functionality to the user.
+The Provider send, across an **RPC** functionality to the user.
 
 The functions are identified by a number in range  between 0 and 143.
-The functions are divided into two separeted groups:
+The functions are divided into two separated groups:
 
 * [**System Reserved**](../Documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment 
 * **User Defined** : range **[32,143]**  are reserved to be implemented in the applicaiton business layer.
@@ -21,7 +21,7 @@ Smart Contract
 --------------
 
 At the moment the UniquID library implement only **Smart-Contract V.0** that put in relationship three kinds of entites: User, Provider and **Revoker**.
-Are definied how functions of the provider can be called by user and give to the Revoker the pèossibility to revoke this autotitation.
+Are definied how functions of the provider can be called by user and give to the Revoker the possibility to revoke this authoritation.
 The Contract structure is defined ad a transaciton that have the structure defined on the table below:
 
 |Input    |Output                                                           | 
