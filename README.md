@@ -1,4 +1,4 @@
-Developer Wiki ([0.2.0](Documents/history.md))
+Developer Wiki ([0.3.0](Documents/history.md))
 ====================
 Index
 ------------
@@ -8,6 +8,7 @@ Index
 * [Library Design](Documents/library_design.md)
 * [Repository List](Documents/repository.md)
 * [Testing Seed](Documents/seeds.md)
+* [Packages](Documents/packages.md)
 ___
 
 Contribution

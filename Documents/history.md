@@ -1,3 +1,11 @@
+Version 0.3.0
+---
+### Changelog
+* Added Support Package section.
+* Added Massive Imprinter backend package
+* Added Massive Imprinter Dashboard package
+___
+
 Version 0.2.0
 ---
 ### Changelog
