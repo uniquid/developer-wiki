@@ -1,6 +1,6 @@
 System Reserved functions
 ====================
-In the table below are displayed the **System Reserved** funcooins 
+In the table below are displayed the **System Reserved** functions 
 
 |N°    |Function                                                           |Description   | 
 |-----:|:-------------------------------------------------------------------:|:-------------:| 
@@ -35,5 +35,5 @@ In the table below are displayed the **System Reserved** funcooins
 | 28   | N/A |  | 
 | 29   | N/A |  | 
 | 30   | Sign |Sign the transaction and broadcast on blockchain   | 
-| 31   | N/A |  | 
+| 31   | Echo |Echo test function  | 
 
