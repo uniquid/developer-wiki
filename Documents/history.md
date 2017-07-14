@@ -1,3 +1,11 @@
+Version 0.3.1
+---
+### Changelog
+* Added Link to C Library.
+* Added Link to Android Library.
+* Added C doc folder.
+___
+
 Version 0.3.0
 ---
 ### Changelog
