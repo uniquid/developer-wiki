@@ -1,3 +1,9 @@
+Version 0.3.2
+---
+### Changelog
+* Added installation notes for Java Library.
+___
+
 Version 0.3.1
 ---
 ### Changelog
