@@ -1,3 +1,9 @@
+Version 0.3.3
+---
+### Changelog
+* Added Android Core documentation.
+___
+
 Version 0.3.2
 ---
 ### Changelog
