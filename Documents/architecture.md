@@ -6,7 +6,7 @@ Introduction
 The UniquID framework is builded over the **Entities**.
 An Entity is any device or system that runs the UniquID library.
 In every entity we can detect two kind of functionality: **Provider** and **User**.
-The Provider send, across an **RPC** functionality to the user.
+The Provider receives, across an **RPC** function requests from the User.
 
 The functions are identified by a number in range  between 0 and 143.
 The functions are divided into two separated groups:
@@ -14,15 +14,15 @@ The functions are divided into two separated groups:
 * [**System Reserved**](../Documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment 
 * **User Defined** : range **[32,143]**  are reserved to be implemented in the application business layer.
 
-Every Entity has  the provider functionality (almost for the System Reserved functions)
+Every Entity has always the provider functionality (almost for the System Reserved functions)
 ____
 
 Smart Contract
 --------------
 
-At the moment the UniquID library implement only **Smart-Contract V.0** that put in relationship three kinds of entites: User, Provider and **Revoker**.
-Smart contracts defines how functions of the provider can be called by user and give to the Revoker the possibility to revoke this authorization.
-The Contract structure is defined as a transaction that have the structure defined on the table below:
+Currently the UniquID library implement only **Smart-Contract V.0** that put in relationship three kinds of entites: User, Provider and **Revoker**.
+Smart contracts defines what the user is allowed to request to the Provider and give to the Revoker the possibility to revoke this grant.
+The Contract structure is defined as a bitcoin transaction that have the structure defined on the table below:
 
 |Input    |Output                                                           | 
 |:-----|:-------------------------------------------------------------------| 
@@ -39,7 +39,7 @@ ___
 OP_RETURN
 ---------
 The transaction for a smart contract has, beside the token transfer, defnied an **OP_RETURN**.
-In the OP_RETURN are contained the access informations granted by the contract.
+In the OP_RETURN there are the access informations granted by the contract.
 The OP_RETURN structure is fo 80 bytes so defined:
 
 |Bytes lenght    |Description                                                           |Notes| 
@@ -53,43 +53,46 @@ The OP_RETURN structure is fo 80 bytes so defined:
 |20|Guarantor 2 address|Not used|
 
 
-The **bitmask** define is a function is accessible (**1**) or denied (**0**) from the **User** to the **Provider**.
+The **bitmask** define if a function is accessible (**1**) or denied (**0**) from the **User** to the **Provider**.
 
 ___
 Identity
 --------
 Each Entity has an **Identity** that is determined by possession of the **private key** that is never exposed out of the entity's boundaries.<br>
-This Private Key can generate the bitcoin address present in transaction.<br>
-For each transaction the address must be a new one both for the Provider and the User.<br>
-The addresses generation is defined trought the BIP32 standard.
+This Private Key is represented by the bitcoin address present in transaction.<br>
+The addresses generation is defined trought the BIP32 standard: for each transaction a new pair of keys for the Provider and the User should be created.<br>
 
 ___
 BIP32
 ---
-The addresses generation is base on BIP Standard.<br>
-This way allow the system to generate a deterministic hierarchy of key starting from a **Seed**.<br>
+The addresses generation is based on [BIP32 Standard](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki). <br>
+Starting from a **Seed** the system will generate keys in a deterministic way. However, from the outside, allthe  keys will be unrelated from each other.<br>
 This Seed is generated at the first run of the Entity and is based on a strong **RNG**.<br>
-This is also the reason cause that Seed could be cosindered the **Identity of the Entity**.
+This is also the reason why the Seed could be cosindered the **Identity of the Entity**.
 
 Below is reported how the BIP32's hierarchy is used inside the Uniquid Framework.
 
 * **m/44'/0'** Path for the **XPub** exported in Imprinting phase.
 * **m/44'/0'/0/0** is the point from where start the hierarchy dedicated to the Provider
+* **m/44'/0'/0/0/0** constant 0 is used for external chain: addresses that are meant to be visible outside of the wallet (e.g. for receiving payments)
+* **m/44'/0'/0/0/1** constant 1 is used for internal chain: addresses which are not meant to be visible outside of the wallet and is used for return transaction change
 * **m/44'/0'/0/0/0/0** is the address where is payed the **first charge** (Imprinting). Is also the address for the **first contract like Provider** with change address set on **m/44'/0'/0/0/1/0**.
 * **m/44'/0'/0/0/0/n** are the address where send the charge. UTXO on these addresses can be used as second input in a contract. 
-* **m/44'/0'/0/0/1/n** are the addresses for the Change of the contracts. From these addresses are generated all conracts after the first.
-* **m/44'/0'/0/1/0/n** are the addresses where the token for the User's contracts are sened.
+* **m/44'/0'/0/0/1/n** are the addresses for the Change of the contracts. From these addresses are generated all contracts after the first.
+* **m/44'/0'/0/1** is the point from where start the hierarchy dedicated to the User
+* **m/44'/0'/0/1/0** constant 0 is used for external chain: addresses that are meant to be visible outside of the wallet (e.g. for receiving contracts)
+* **m/44'/0'/0/1/0/n** are the addresses where the token for the User's contracts are sent.
 
 
-This schema is **mandatory** like is mandatory that **no address can be appear in more than one contract**.
+This schema is **mandatory** like is mandatory that **no address can appear in more than one contract**.
 
 ___
 Imprinting
 ----------
-When an Entity has created his identity, no one trnasaction on the block chain envolve his addresses.<br>
-**Imprinting** is the name of the processthat allow an other Entity, called **Imprinter**, that obtain the control of the new Entity.<br>
+When an Entity has created his identity, no transaction on the block chain involve his addresses.<br>
+**Imprinting** is the name of the process that allow an other Entity, called **Imprinter**, to obtain the control of the newly created Entity.<br>
 
-The Imprinter take, from the new Entity, the Xpub at path **m/44'/0'**  and the **Name** used to identify the entity on the communication channel use for the message delivery.<br>
+The Imprinter take, from the new Entity, the Xpub at path **m/44'/0'**  and the **Name** used to identify the entity on the communication channel for message delivery.<br>
 Obtained the Xpub the Imprinter send some token at address **m/44'/0'/0/0/0/0**.
 
 This first transaction is called **Imprinting Contract** 'cause the Entity that send token acquire the access to all **system reserved functions**.
