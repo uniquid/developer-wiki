@@ -12,7 +12,7 @@ The functions are identified by a number in range  between 0 and 143.
 The functions are divided into two separated groups:
 
 * [**System Reserved**](../Documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment 
-* **User Defined** : range **[32,143]**  are reserved to be implemented in the applicaiton business layer.
+* **User Defined** : range **[32,143]**  are reserved to be implemented in the application business layer.
 
 Every Entity has  the provider functionality (almost for the System Reserved functions)
 ____
@@ -21,8 +21,8 @@ Smart Contract
 --------------
 
 At the moment the UniquID library implement only **Smart-Contract V.0** that put in relationship three kinds of entites: User, Provider and **Revoker**.
-Are definied how functions of the provider can be called by user and give to the Revoker the possibility to revoke this authoritation.
-The Contract structure is defined ad a transaciton that have the structure defined on the table below:
+Smart contracts defines how functions of the provider can be called by user and give to the Revoker the possibility to revoke this authorization.
+The Contract structure is defined as a transaction that have the structure defined on the table below:
 
 |Input    |Output                                                           | 
 |:-----|:-------------------------------------------------------------------| 
@@ -31,10 +31,10 @@ The Contract structure is defined ad a transaciton that have the structure defin
 ||2 - Revoker Address(Token) |
 ||3 - Change Address|
 
-The order of definition for inputs and outputs si mandatory. 
-Only the recarghe address is optionally.
-This kind of transaction transfer token form the Provider tp the User and the Revoker and must be signed by the provider.
-The transactrion must be considered revoked when the Revoker has spent his token.
+The order of definition for inputs and outputs is mandatory. 
+Only the recharge address is optionally.
+This kind of transaction transfer token form the Provider to the User and the Revoker and must be signed by the provider.
+The transaction must be considered revoked when the Revoker has spent his token.
 ___
 OP_RETURN
 ---------
