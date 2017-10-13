@@ -90,26 +90,24 @@ ___
 Imprinting
 ----------
 When an Entity has created his identity, no transaction on the block chain involve his addresses.<br>
-**Imprinting** is the name of the process that allow an other Entity, called **Imprinter**, to obtain the control of the newly created Entity.<br>
+**Imprinting** is the name of the process that allow another Entity, called **Imprinter**, to obtain the control of the newly created Entity.<br>
 
 The Imprinter take, from the new Entity, the Xpub at path **m/44'/0'**  and the **Name** used to identify the entity on the communication channel for message delivery.<br>
 Obtained the Xpub the Imprinter send some token at address **m/44'/0'/0/0/0/0**.
 
 This first transaction is called **Imprinting Contract** 'cause the Entity that send token acquire the access to all **system reserved functions**.
 
-From this moment the Imprinter is the only owner of the entity imprinted.<br>
-To allow a third  entity to manage the one just imprinted the imprinter send to imprinted entity a contract to  **sign**  where this third entity (called **orchestrator** ) is allowed to manage the system reserved functions. <br>
+From this moment the Imprinter is the only owner of the entity just imprinted.<br>
+The imprinter later sends to the newly imprinted entity a contract to  **sign**  that specify that a third entity (called **orchestrator** ) is allowed to request him the system reserved functions.<br>
 
-After that the Xpub and the unique name are transferred **from** imprinter **to** the orchestrator.
+After that, the Xpub and the unique name are transferred **from** imprinter **to** the orchestrator that now become the new owner of the Entity. The original **imprinting contract** is automatically revoked.
 
-So, once that the first contract was signed, the **imprinting contract** went, implictly, revoked.
-
-The orchestrator is, foornm this moment, allowed to manage the creation of the Entity's contracts.
+The orchestrator is, from this moment, allowed to manage the creation of the Entity's contracts.
 ___
 
 Message and RPC
 ---
-The UniquID framework define the structure of the message used to request the function's execution.<br>
+The UniquID framework define the structure of the messages used to request the function's execution.<br>
 The channel is not defined inside the framwork to grant the maximum interoperability between all system's actors.<br>
 The structure of the messages and the RPC is based on **JSON-RPC**.<br>
 In the communication protocol the User send a request and wait a response from the Provider.
@@ -147,13 +145,13 @@ Where:<br>
 ```
 Where:<br>
 * **sender**: is the Provider Address of the contract with wich the Provider has granted the excution of the requested function.
-* **result**: is the result of the function invoked.Coud be a structured JSON. The interpretation of the params value is demanded to the immplementation of the method.Errors form the method must be returned in this string.
+* **result**: is the result of the function invoked.Coud be a structured JSON. The interpretation of the params value is demanded to the immplementation of the method. Errors form the method must be returned in this string.
 * **error**: is number that report a message error (i.e. Invalid JSON). If the message is correct, decodified, exist a contract that allow the function execution and the function was executed then this value is 0.
 * **id**: is a **nonce** that must correspond with the same parameter on request. Keep a relationship between request and response.
 
 ### Process
-When the Provider Entity receive a reqeust, it must first verify that there is a contract kinking it to the sender address.<br>
-If the conract exist, it must verify if the bit correspondent to the bit correponding to the requested method on the bitmask of the contract is setted to 1 (one).<br>
-Only if this last check is ok the provider can send in execution the requested funciton.<br>
+When the Provider Entity receive a request, it must first verify that there is a contract linking it to the sender address.<br>
+If the contract exist, the provider must verify if the requested method number contains a 1 in the contract's bitmask.<br>
+Only if this last check is ok the provider can send in execution the requested function.<br>
 In the reply message the sender must be valued with the address that binds provider and user in the affected contract. <br>
-If the contract doesnot exist, the providere does not have to reply.<br>
+If the contract does not exist, the provider does not have to reply.<br>
