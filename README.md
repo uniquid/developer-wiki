@@ -3,10 +3,11 @@
 ## Index
 
 * [Architecture](/architecture.md)
-* Library Design
-* [Repository List](Documents/repository.md)
-* [Testing Seed](Documents/seeds.md)
-* [Packages](Documents/packages.md)
+* [Library Design](/library-design.md)
+* [Repository List](/repository-list.md)
+* [Testing Seed](/testing-seeds.md)
+* [System Reserved](/system-reserved.md)
+* [Packages](/packages.md)
 
 ---
 
