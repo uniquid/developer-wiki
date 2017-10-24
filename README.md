@@ -2,7 +2,7 @@
 
 ## Index
 
-* [Architecture](/Documents/architecture.md)
+* [Architecture](/architecture.md)
 * Library Design
 * [Repository List](Documents/repository.md)
 * [Testing Seed](Documents/seeds.md)
