@@ -3,26 +3,26 @@ Uniquid Architecture
 
 Introduction
 ------------
-The UniquID framework is builded over the **Entities**.
+The UniquID framework is built using the concept of **Entities**.
 An Entity is any device or system that runs the UniquID library.
 In every entity we can detect two kind of functionality: **Provider** and **User**.
 The Provider receives, across an **RPC** function requests from the User.
 
 The functions are identified by a number in range  between 0 and 143.
-The functions are divided into two separated groups:
+The functions are divided into two separate groups:
 
 * [**System Reserved**](../Documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment 
 * **User Defined** : range **[32,143]**  are reserved to be implemented in the application business layer.
 
-Every Entity has always the provider functionality (almost for the System Reserved functions)
+Every Entity always has the provider functionality (almost for the System Reserved functions)
 ____
 
 Smart Contract
 --------------
 
-Currently the UniquID library implement only **Smart-Contract V.0** that put in relationship three kinds of entites: User, Provider and **Revoker**.
-Smart contracts defines what the user is allowed to request to the Provider and give to the Revoker the possibility to revoke this grant.
-The Contract structure is defined as a bitcoin transaction that have the structure defined on the table below:
+Currently the UniquID library implement only **Smart-Contract V.0** that puts in relationship three kinds of entites: User, Provider and **Revoker**.
+Smart contracts define what the user is allowed to request to the Provider and give to the Revoker the possibility to revoke this grant.
+The Contract structure is defined as a bitcoin transaction that has the structure defined on the table below:
 
 |Input    |Output                                                           | 
 |:-----|:-------------------------------------------------------------------| 
@@ -32,17 +32,17 @@ The Contract structure is defined as a bitcoin transaction that have the structu
 ||3 - Change Address|
 
 The order of definition for inputs and outputs is mandatory. 
-Only the recharge address is optionally.
+Only the recharge address is optional.
 This kind of transaction transfer token form the Provider to the User and the Revoker and must be signed by the provider.
 The transaction must be considered revoked when the Revoker has spent his token.
 ___
 OP_RETURN
 ---------
-The transaction for a smart contract has, beside the token transfer, defnied an **OP_RETURN**.
-In the OP_RETURN there are the access informations granted by the contract.
-The OP_RETURN structure is fo 80 bytes so defined:
+The transaction for a smart contract has, beside the token transfer, defined an **OP_RETURN**.
+In the OP_RETURN there resides the access information granted by the contract.
+The OP_RETURN structure is of 80 bytes so defined:
 
-|Bytes lenght    |Description                                                           |Notes| 
+|Bytes length    |Description                                                           |Notes| 
 |:-----|:-------------------------------------------------------------------|:---:|
 |1|Version| 0 for Smart Contract V.0| 
 |4|Bitmask for System Reserved functions ||
@@ -66,14 +66,14 @@ ___
 BIP32
 ---
 The addresses generation is based on [BIP32 Standard](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki). <br>
-Starting from a **Seed** the system will generate keys in a deterministic way. However, from the outside, allthe  keys will be unrelated from each other.<br>
+Starting from a **Seed** the system will generate keys in a deterministic way. However, from the outside, all the  keys will be unrelated from each other.<br>
 This Seed is generated at the first run of the Entity and is based on a strong **RNG**.<br>
-This is also the reason why the Seed could be cosindered the **Identity of the Entity**.
+This is also the reason why the Seed could be considered the **Identity of the Entity**.
 
 Below is reported how the BIP32's hierarchy is used inside the Uniquid Framework.
 
 * **m/44'/0'** Path for the **XPub** exported in Imprinting phase.
-* **m/44'/0'/0/0** is the point from where start the hierarchy dedicated to the Provider
+* **m/44'/0'/0/0** is the point from where starts the hierarchy dedicated to the Provider
 * **m/44'/0'/0/0/0** constant 0 is used for external chain: addresses that are meant to be visible outside of the wallet (e.g. for receiving payments)
 * **m/44'/0'/0/0/1** constant 1 is used for internal chain: addresses which are not meant to be visible outside of the wallet and is used for return transaction change
 * **m/44'/0'/0/0/0/0** is the address where is payed the **first charge** (Imprinting). Is also the address for the **first contract like Provider** with change address set on **m/44'/0'/0/0/1/0**.
@@ -150,8 +150,8 @@ Where:<br>
 * **id**: is a **nonce** that must correspond with the same parameter on request. Keep a relationship between request and response.
 
 ### Process
-When the Provider Entity receive a request, it must first verify that there is a contract linking it to the sender address.<br>
-If the contract exist, the provider must verify if the requested method number contains a 1 in the contract's bitmask.<br>
-Only if this last check is ok the provider can send in execution the requested function.<br>
-In the reply message the sender must be valued with the address that binds provider and user in the affected contract. <br>
-If the contract does not exist, the provider does not have to reply.<br>
+When the Provider Entity receives a request, it must first verify that there is a contract linking it to the sender address.<br>
+If the contract exist, the Provider must verify if the requested method number contains a 1 in the contract's bitmask.<br>
+Only if this last check is ok the Provider can send for execution the requested function.<br>
+In the reply message the sender must be valued with the address that binds Provider and User in the affected contract. <br>
+If the contract does not exist, the Provider does not have to reply.<br>
