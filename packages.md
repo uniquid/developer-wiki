@@ -1,7 +1,7 @@
 # Packages List
 
 Below are listed all packages that you can use to experiment the UniquID Blast platform.  
-This page is coinitnous improvment.   
+This page is in a state of continuous improvement.   
 Keep in mind.
 
 ### Massive Imprinter Dashboard \[[zip](../attachments/massive-imprinter-dashboard.zip) - [tar](../attachments/massive_imprinter_dashboard.tar.gz)\]
@@ -25,10 +25,10 @@ You can use with screen, forever or what you prefer to keep running the process.
 
 ### Massive Imprinter Backend \[[zip](../attachments/massive_imprinter_backend.zip) - [tar](../attachments/massive_imprinter_backend.tar.gz)\]
 
-Is a jar file that you can doanload and start ni any environment provided of a JVM.   
-The
+Is a jar file that you can download and start in any environment providing a JVM.   
+Then
 
-* Explode the archive in any directory that you want
+* Expand the archive in any directory that you want
 * Edit the appconfig.properties files and replace
 
   ```
@@ -55,7 +55,7 @@ The first time that you launch the massive imprinter an UniquID identiti is crea
 
 You need to be charged by some token.
 
-To do that you must send your tpub to UniquID \(stay tuned great imrovment for this process are in development\).
+To do that you must send your tpub to UniquID \(stay tuned, great improvement for this process are in development\).
 
 To retrieve the tpub for your massive imprinter identity you must go with a browser to the address:
 
