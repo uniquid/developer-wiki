@@ -6,59 +6,27 @@ Below are listed all packages that you can use to experiment the UniquID Blast p
 This page is coinitnous improvment. 
 Keep in mind.
 
-### Massive Imprinter Dashboard [[zip](../attachments/massive-imprinter-dashboard.zip) - [tar](../attachments/massive_imprinter_dashboard.tar.gz)]
+### Android Mobile Orchestrator [[apk](../attachments/Orchestrator_Nov_07.apk)]
 
-Is a Node.js app that provide a GUI to monitor your massive imprinter backend.
-Requirment : node.js and npm installed
-To run:
- * Explode the archive in the directory that you want use 
- * Edit the file config.js and specify the address of your Massive Imprinter Backend
- * Execute:
-        npm install
-
- * To launch : 
-        
-        npm start
-         
-        
-        You can use with screen, forever or what you prefer to keep running the process.
+Is the Android package need to run the UniquID orchestrator and dashboard.
+Please download and install on your phone.
+The phone and the dashboard **must be** in hte same network.
+For settings setup the parameters  following  the address of your own architecture.
+If you use dev-in-a-box tool please remember to use the network address of the host machine.
 
 
+### Android Mobile Tank  Manager [[apk](../attachments/TankManager_Nov_07.apk)]
 
-### Massive Imprinter Backend [[zip](../attachments/massive_imprinter_backend.zip) - [tar](../attachments/massive_imprinter_backend.tar.gz)]
+Is the package to perform the Tank Manager that can help you to perform the complete tour of the UniquID capabilities  provided to the Tank Example.
 
-Is a jar file that you can doanload and start ni any environment provided of a JVM. 
-The 
 
-* Explode the archive in any directory that you want
-* Edit the appconfig.properties files and replace 
-        
-        [path where the massive imprinter is installed]
+### Dev-in-a-box Tool [[github](https://github.com/uniquid/dev-in-a-box/tree/develop)]
 
-  with the path where the massive imprinter is installed.
-* Edit the **mqtt.broker** property in the appconfig.properties file and replace 
+Dev-a-box is a repository that allow you to create your own UniquID infrastructure  **for development only** 
+You can install it going to the repository link and following the instruction on Readme.
+All components are installed on your machine as Docker container.
+The blockchain and the peers remain tha main uniquid development blockchain infrastructure so you can use your own architecture  without computational cost for a private blockchain.
 
-        [select a public broker like tcp://broker.hivemq.com:1883]
 
-  with the path of a public broker or any other MQTT Broker reachable from the machine where you have installed the Massive Imprinter.
-
-* Make sure that **start.sh** and **clean.sh** scripts are executable with **chmod +x start.sh** and **chmod +x clean.sh**
-* To start the massive imprinter you can launch the script **./start.sh**  You can use it with screen or what you prefer to keep running the process.
-
-#### Important Notice
-
-The first time that you launch the massive imprinter an UniquID identiti is created. 
-
-You need to be charged by some token.
-
-To do that you must send your tpub to UniquID (stay tuned great imrovment for this process are in development).
-
-To retrieve the tpub for your massive imprinter identity you must go with a browser to the address: 
-
-        http://[address of your massive imprinter]:8080/status.jsp
-
-then scroll the page until you can see a page like this:
-
-![alt text](../img/tpub_example.png "TPUB Example")
-
-For that you can contact your direct reference on UniquID team.
+### Importan Notice
+This page sitll in continous update. Please keep in mind it and be carefull twith change. 
