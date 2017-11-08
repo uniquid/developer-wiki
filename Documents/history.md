@@ -1,3 +1,10 @@
+Version 0.3.4
+---
+### Changelog
+* Update Packages section.
+* Added Android APK.
+___
+
 Version 0.3.3
 ---
 ### Changelog
