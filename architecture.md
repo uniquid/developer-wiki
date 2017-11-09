@@ -23,7 +23,7 @@ This is a representation of Entity building blocks:
  ----------------------------------------------------------------------------------------------------
 |                                             |                            |                         |
 |       contract exchanger and validator      |      active contract DB    |     identity            |
-|		( blockchain wallet )                 |    (contract register)     | (bip32 secure element)  |
+|		( blockchain wallet )         |    (contract register)     | (bip32 secure element)  |
 |                                             |                            |                         |
  --------------------------------------------- ---------------------------- ------------------------ |
 
