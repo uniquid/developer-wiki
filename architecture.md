@@ -55,22 +55,24 @@ Every Entity intrinsically has always the provider functionality in order to all
 Functions
 ---------
 
-In order to allow the UniquID framework to create and distribute contracts a special kind of payload was defined. The Contract carrying this payload permit the Entity to sign new Contracts and broadcast them on the BlockChain.
+In order to allow the UniquID framework to create and distribute contracts a special kind of payload was needed. The Contract carrying this payload permit the Provider to sign new Contracts and broadcast them on the BlockChain only if the User is granted this access.
 
-The default implementation of this mechanism was done using a similar **RPC**: the Provider receives a request from the User asking to perform a specified function. The Provider will check if there is a valid Contract that authorize the User to perform the request.
+The special payload defines a bitmask: each bit of the mask represents the n-th function. If the bit is 1 then the function is granted otherwise the function is denied.
 
-The functions are identified by a number in range  between 0 and 143 and are divided into two separated groups:
+The functions are identified by a number in range between 0 and 143 and are divided into two separated groups:
 
-* [**System Reserved**](../Documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment 
-* **User Defined** : range **[32,143]** can be used users of the library to implement business applications.
+* [**System Reserved**](../Documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment
+* **User Defined** : range **[32,143]** can be used users of the library to implement business applications
 
-The default library, hence, has a new representation:
+The default implementation that uses those funcitons is a similar **RPC**: the Provider receives a request from the User asking to perform a specified function. The Provider will check if there is a Contract that link it to the User, and then checks the bitmask in the payload to verify that the function is enabled.
+
+The default library, hence, has a new representation: the Function layer defines a series of functions that can be plugged in automatically and the RPC module that exposes them outside.
 
 ```
  -------------------------
-|                        |
-|  Function layer        |
-|                        |
+|      RPC Module        |
+|------------------------|
+|    Function layer      |
  ----------------------------------------------------------------------------------------------------
 |                                                                                                    |
 |                                      communication helper                                          |
@@ -83,7 +85,10 @@ The default library, hence, has a new representation:
  --------------------------------------------- ---------------------------- ------------------------ |
 ```
 
-Every Entity always has the provider functionality (almost for the System Reserved functions)
+Please note that this new block on top of the communication helper is not real part of the UniquID library. The implementor can create a new layer in any technology he wishes and replace it.
+However, for simple implementation he can reuse what UniquID already created.
+
+Finally, every Entity always has the Provider functionality for the System Reserved functions to allow the framework to work correctly.
 
 ____
 
