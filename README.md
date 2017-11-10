@@ -1,6 +1,6 @@
 Index
 ------------
-Developer Wiki ([0.3.4](Documents/history.md))
+Developer Wiki ([0.3.4](/history.md))
 
 ## Index
 
