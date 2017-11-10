@@ -4,34 +4,50 @@ UniquID Architecture
 Introduction
 ------------
 The UniquID framework defines the concepts of **Entity** and **Contract**.
+
 An Entity is a software component that contains:
 
-* cryptographic-ID: the unique identity - is a mechanism that uses ECDSA to digitally sign data. This component must wrap digital keys and avoid to leak them outside. Keys are used to sign Contracts and for authentication
+* cryptographic ID: the unique identity - is a mechanism that uses ECDSA to digitally sign data. This component should use a secure element to manage cryptographic keys. Keys are used to sign Contracts and for verify digital signatures.
 * contract exchanger and validator: a component that allow to exchange Contracts between Entities and validate their content.
 * contract repository: a local data store for contracts that allow easy contract lookup/manipulation to the Entity.
 * communication helper: the interface of the Entity with the external world. It allows to exposes Entity functionalities to user code such as signing, signature verification and contract verification
-
-A Contract represents an agreement between Entities and defines how they can interact. The contract contains Entities' signatures that help to provide authentication mechanism.
 
 This is a representation of Entity building blocks:
 
 ```
  ----------------------------------------------------------------------------------------------------
 |                                                                                                    |
-|                     communication helper                                                           |
+|                                      communication helper                                          |
 |                                                                                                    |
  ----------------------------------------------------------------------------------------------------
 |                                             |                            |                         |
-|       contract exchanger and validator      |      active contract DB    |     identity            |
-|		( blockchain wallet )         |    (contract register)     | (bip32 secure element)  |
+|       contract exchanger and validator      |     contract repository    |    cryptographic ID     |
+|         (blockchain access layer)           |     (contract register)    | (bip32 secure element)  |
 |                                             |                            |                         |
  --------------------------------------------- ---------------------------- ------------------------ |
-
 ```
 
-The BlockChain is used to transport and validate **Contract** between the Entities.
+A Contract represents an agreement between two Entities and defines how they can interact. The contract contains Entities' signatures that help to provide authentication mechanism and a payload. The payload contains what the user application needs to enforce the contract.
 
-If the Entity performs a request then it's called **User**. If the Entity receives a requests it's called **Provider**.
+This is a representation of a Contract:
+
+```
+ -------------------------------------------------------
+| Provider signature                                    |
+| ------------------------------------------------------|
+| User signature                                        |
+|-------------------------------------------------------|
+| Revoker signature                                     |
+|-------------------------------------------------------|
+|                                                       |
+| Payload                                               |
+|                                                       |
+ -------------------------------------------------------|
+```
+
+The BlockChain is used to transport and validate **Contract** between the Entities in a trustless manner.
+
+There are two type of Entities: if the Entity performs a request then it's called **User**; if the Entity receives a requests it's called **Provider**.
 
 Every Entity intrinsically has always the provider functionality in order to allow the signing of Contracts from the UniquID framework.
 
@@ -39,16 +55,36 @@ Every Entity intrinsically has always the provider functionality in order to all
 Functions
 ---------
 
-In order to allow the UniquID framework to work correctly, a special kind of Contract between the Entities was defined. This contract permit the Entity to sign Contracts and broadcast them on the BlockChain.
+In order to allow the UniquID framework to create and distribute contracts a special kind of payload was defined. The Contract carrying this payload permit the Entity to sign new Contracts and broadcast them on the BlockChain.
 
-The default implementation was done using an **RPC** mechanism: the Provider receives a requests from the User asking to perform a defined set of functions. The Provider will check if there is a valid Contract that authorize the User to perform the request.
+The default implementation of this mechanism was done using a similar **RPC**: the Provider receives a request from the User asking to perform a specified function. The Provider will check if there is a valid Contract that authorize the User to perform the request.
 
 The functions are identified by a number in range  between 0 and 143 and are divided into two separated groups:
 
 * [**System Reserved**](../Documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment 
 * **User Defined** : range **[32,143]** can be used users of the library to implement business applications.
 
+The default library, hence, has a new representation:
+
+```
+ -------------------------
+|                        |
+|  Function layer        |
+|                        |
+ ----------------------------------------------------------------------------------------------------
+|                                                                                                    |
+|                                      communication helper                                          |
+|                                                                                                    |
+ ----------------------------------------------------------------------------------------------------
+|                                             |                            |                         |
+|       contract exchanger and validator      |     contract repository    |    cryptographic ID     |
+|         (blockchain access layer)           |     (contract register)    | (bip32 secure element)  |
+|                                             |                            |                         |
+ --------------------------------------------- ---------------------------- ------------------------ |
+```
+
 Every Entity always has the provider functionality (almost for the System Reserved functions)
+
 ____
 
 Smart Contract
