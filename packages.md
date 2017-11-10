@@ -6,7 +6,7 @@ Below are listed all packages that you can use to experiment the UniquID Blast p
 This page is coinitnous improvment. 
 Keep in mind.
 
-### Android Mobile Orchestrator [[apk](../attachments/Orchestrator_Nov_07.apk)]
+### Android Mobile Orchestrator [[apk](/attachments/Orchestrator_Nov_07.apk)]
 
 Is the Android package need to run the UniquID orchestrator and dashboard.
 Please download and install on your phone.
@@ -15,7 +15,7 @@ For settings setup the parameters  following  the address of your own architectu
 If you use dev-in-a-box tool please remember to use the network address of the host machine.
 
 
-### Android Mobile Tank  Manager [[apk](../attachments/TankManager_Nov_07.apk)]
+### Android Mobile Tank  Manager [[apk](/attachments/TankManager_Nov_07.apk)]
 
 Is the package to perform the Tank Manager that can help you to perform the complete tour of the UniquID capabilities  provided to the Tank Example.
 
@@ -28,5 +28,7 @@ All components are installed on your machine as Docker container.
 The blockchain and the peers remain tha main uniquid development blockchain infrastructure so you can use your own architecture  without computational cost for a private blockchain.
 
 
-### Importan Notice
-This page sitll in continous update. Please keep in mind it and be carefull twith change. 
+### Important Notice
+This page sitll in continous update. Please keep in mind it and be carefull twith change.
+
+For that you can contact your direct reference on UniquID team.
