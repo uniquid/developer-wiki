@@ -100,7 +100,7 @@ Imprinting
 ----------
 
 When an Entity 'A' borns, it creates its own cryptographic identity. Since there isn't yet any Contract that link any other Entity with 'A', no one is allowed to interact with 'A'.
-**Imprinting** is the name of the process that allows another Entity 'B', called **Imprinter**, to enroll 'A' in the system.
+**Imprinting** is the name of the process that allows another Entity 'B', called **Imprinter**, to enroll 'A' identity into the system.
 
 The Imprinter receives from the Entity 'A' the public part of the cryptographic identity. It then save it into its persistence and creates a special Contract that link itself (the Imprinter) and the Entity 'A' and publish it on the BlockChain. This contract allows the Imprinter to delegate 'A' to another Entity 'C'.
 
