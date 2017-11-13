@@ -95,6 +95,35 @@ For simple implementations the library user is encuraged to just implement this 
 
 As a consequence every Entity always has the Provider functionality for the System Reserved functions to allow the framework to work correctly.
 
+
+Imprinting
+----------
+
+When an Entity 'A' borns, it creates its own cryptographic identity. Since there isn't yet any Contract that link any other Entity with 'A', no one is allowed to interact with 'A'.
+**Imprinting** is the name of the process that allows another Entity 'B', called **Imprinter**, to enroll 'A' in the system.
+
+The Imprinter receives from the Entity 'A' the public part of the cryptographic identity. It then save it into its persistence and creates a special Contract that link itself (the Imprinter) and the Entity 'A' and publish it on the BlockChain. This contract allows the Imprinter to delegate 'A' to another Entity 'C'.
+
+This special Contract is received by the Entity 'A' from the BlockChain, verified and finally stored in the contract repository.
+
+From this moment, the Imprinter is the only authorized User of 'A' that can ask 'A' to create a management contract with 'C'.
+
+
+Orchestration
+-------------
+
+**Orchestration** is the name of the process that allows the Imprinter to delegate the management of Entity 'A' to another Entity 'B' called **Orchestrator**.
+
+The Imprinter creates a Contract where 'A' is the Provider and 'B' is the User and then send it to the Entity 'A' to be signed and broadcasted on the BlockChain.
+
+This Contract enable the bits that allows to request the Contract creations to the User.
+
+When this Contract is received by the Entity 'A' from the BlockChain, it is verified and finally stored in the contract repository.
+
+When this Contract is received by the Orchestrator from the BlockChain, it is verified and stored in the contract repository. Then the Orchestrator contacts the Imprinter requesting the public cryptographic identity of 'A'.
+
+The Orchestrator is, from this moment, allowed to manage the creation of the A's contracts.
+
 ____
 
 Smart Contract
@@ -169,23 +198,6 @@ Below is reported how the BIP32's hierarchy is used inside the Uniquid Framework
 
 This schema is **mandatory** like is mandatory that **no address can appear in more than one contract**.
 
-___
-Imprinting
-----------
-When an Entity has created his identity, no transaction on the block chain involve his addresses.<br>
-**Imprinting** is the name of the process that allow another Entity, called **Imprinter**, to obtain the control of the newly created Entity.<br>
-
-The Imprinter take, from the new Entity, the Xpub at path **m/44'/0'**  and the **Name** used to identify the entity on the communication channel for message delivery.<br>
-Obtained the Xpub the Imprinter send some token at address **m/44'/0'/0/0/0/0**.
-
-This first transaction is called **Imprinting Contract** 'cause the Entity that send token acquire the access to all **system reserved functions**.
-
-From this moment the Imprinter is the only owner of the entity just imprinted.<br>
-The imprinter later sends to the newly imprinted entity a contract to  **sign**  that specify that a third entity (called **orchestrator** ) is allowed to request him the system reserved functions.<br>
-
-After that, the Xpub and the unique name are transferred **from** imprinter **to** the orchestrator that now become the new owner of the Entity. The original **imprinting contract** is automatically revoked.
-
-The orchestrator is, from this moment, allowed to manage the creation of the Entity's contracts.
 ___
 
 Message and RPC
