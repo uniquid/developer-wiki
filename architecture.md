@@ -7,7 +7,7 @@ The UniquID framework defines the concepts of **Entity** and **Contract**.
 
 An Entity is a software component that contains:
 
-* cryptographic ID: the unique identity - is a mechanism that uses ECDSA to digitally sign data. This component should use a secure element to manage cryptographic keys. Keys are used to sign Contracts and for verify digital signatures.
+* cryptographic ID: the unique identity - is a mechanism that uses ECDSA to digitally sign data. This component should use a secure element to manage cryptographic keys. Keys are used to sign Contracts and verify digital signatures.
 * contract exchanger and validator: a component that allow to exchange Contracts between Entities and validate their content.
 * contract repository: a local data store for contracts that allow easy contract lookup/manipulation to the Entity.
 * communication helper: the interface of the Entity with the external world. It allows to exposes Entity functionalities to user code such as signing, signature verification and contract verification
@@ -15,6 +15,9 @@ An Entity is a software component that contains:
 This is a representation of Entity building blocks:
 
 ```
+
+Uniquid Entity
+
  ----------------------------------------------------------------------------------------------------
 |                                                                                                    |
 |                                      communication helper                                          |
@@ -27,7 +30,7 @@ This is a representation of Entity building blocks:
  --------------------------------------------- ---------------------------- ------------------------ |
 ```
 
-A Contract represents an agreement between two Entities and defines how they can interact. The contract contains Entities' signatures that help to provide authentication mechanism and a payload. The payload contains what the user application needs to enforce the contract.
+A Contract represents an agreement between two Entities and defines how they can interact. The contract contains Entities' signatures that help to provide identification mechanism and a payload. The payload contains what the user application code needs to enforce via the contract.
 
 This is a representation of a Contract:
 
@@ -51,11 +54,13 @@ There are two type of Entities: if the Entity performs a request then it's calle
 
 Every Entity intrinsically has always the provider functionality in order to allow the signing of Contracts from the UniquID framework.
 
+Another special Entity is the **Revoker**. It's the only party authorized to destroy the contract.
+
 
 Functions
 ---------
 
-In order to allow the UniquID framework to create and distribute contracts a special kind of payload was needed. The Contract carrying this payload permit the Provider to sign new Contracts and broadcast them on the BlockChain only if the User is granted this access.
+To allow the UniquID framework to create and distribute contracts a special kind of payload was needed. The Contract carrying this payload permit the Provider to sign new Contracts and broadcast them on the BlockChain only if the User is granted this priviledge.
 
 The special payload defines a bitmask: each bit of the mask represents the n-th function. If the bit is 1 then the function is granted otherwise the function is denied.
 
@@ -64,7 +69,7 @@ The functions are identified by a number in range between 0 and 143 and are divi
 * [**System Reserved**](../Documents/systemreserved.md):  range   **[0,31]** are reserved for framework managment
 * **User Defined** : range **[32,143]** can be used users of the library to implement business applications
 
-The default implementation that uses those funcitons is a similar **RPC**: the Provider receives a request from the User asking to perform a specified function. The Provider will check if there is a Contract that link it to the User, and then checks the bitmask in the payload to verify that the function is enabled.
+The default implementation that uses those functions is a similar **RPC** mechanism: the Provider receives a request from the User asking to perform a specified function. The Provider will check if there is a Contract that link it to the User, and then checks the bitmask in the payload to verify that the function is enabled.
 
 The default library, hence, has a new representation: the Function layer defines a series of functions that can be plugged in automatically and the RPC module that exposes them outside.
 
@@ -85,8 +90,8 @@ The default library, hence, has a new representation: the Function layer defines
  --------------------------------------------- ---------------------------- ------------------------ |
 ```
 
-Please note that this new block on top of the communication helper is not real part of the UniquID library. The implementor can create a new layer in any technology he wishes and replace it.
-However, for simple implementation he can reuse what UniquID already created.
+Please note that this new block on top of the communication helper is not real part of the UniquID library. The implementor is free to override it with any implementation he wishes, but he has to re-implement all the messages for the System Reserved functions.
+For simple implementation he can just use what UniquID already created. This is why UniquID ships this layer as part of the library.
 
 Finally, every Entity always has the Provider functionality for the System Reserved functions to allow the framework to work correctly.
 
