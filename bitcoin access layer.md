@@ -38,20 +38,26 @@ This is how the hierarchy is used inside the Uniquid Framework.
 
 This schema is **mandatory** like is mandatory that **no address can appear in more than one contract**.
 
-____
 
-Smart Contract
---------------
+Imprinting
+----------
 
-Currently the UniquID library implement only **Smart-Contract V.0** that puts in relationship three kinds of entites: User, Provider and **Revoker**.
-Smart contracts define what the user is allowed to request to the Provider and give to the Revoker the possibility to revoke this grant.
-The Contract structure is defined as a bitcoin transaction that has the structure defined on the table below:
+When a node borns, it derive the XPub **m/44'/0'** and send it to the Imprinter.<br>
+The imprinter will derive the key **m/44'/0'/0/0/0/0** from the XPUB and create a transaction that set this key as an output
+
+The Entity will begin to lookup from the Bitcoin BlockChain a transaction that provide coins to the key **m/44'/0'/0/0/0/0**. The first that give coin is identified as Imprinter.
+
+
+Contracts
+---------
+
+The Contract structure is defined as a bitcoin transaction that is as below:
 
 |Input    |Output                                                           | 
 |:-----|:-------------------------------------------------------------------| 
-| 0 - Provider Address    | 0 - User Address(Token) | 
+| 0 - Provider Public Identity    | 0 - User Public Identity | 
 | 1 - Recharge Address (opt.) | 1 - OP_RETURN |
-||2 - Revoker Address(Token) |
+||2 - Revoker Public Identity |
 ||3 - Change Address|
 
 The order of definition for inputs and outputs is mandatory. 
@@ -59,7 +65,7 @@ Only the recharge address is optional.
 This kind of transaction transfer token form the Provider to the User and the Revoker and must be signed by the provider.
 The transaction must be considered revoked when the Revoker has spent his token.
 
-Custom smart contract can be defined by business application. In this case the format and parsing is completely left to business application implementors.
+The OP_RETURN contains the payload of UniquID contract.
 
 ___
 OP_RETURN
