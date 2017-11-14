@@ -5,6 +5,7 @@ Developer Wiki ([0.3.4](/history.md))
 ## Index
 
 * [Architecture](/architecture.md)
+* [Bitcoin BlockChain](/bitcoin access layer.md)
 * [Library Design](/library-design.md)
 * [Repository List](/repository-list.md)
 * [Testing Seed](/testing-seeds.md)
