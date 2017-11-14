@@ -4,25 +4,26 @@ Bitcoin Access Layer
 Introduction
 ------------
 
-This document describes the bridge between the UniquID library and the Bitcoin BlockChain.
+This document describes the bridge between the UniquID library and Bitcoin: how UniquID library can use Bitcoin BlockChain to provide its services.
 
 
-Identity
---------
+Cryptographic Identity
+----------------------
 
-Each Entity has an **Identity** that is represented by the Seed that allows to deterministically derive new private keys.<br>
-The practice follows the Hierarchical Deterministic Wallets of Bitcoin and bip32 standard.
+The cryptographic ID of each Entity is represented by the binary Seed that is automatically generated on the first start.<br>
+The Seed follows the same principles used for Hierarchical Deterministic Wallets of Bitcoin. See [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
 
-___
+
 BIP32
 -----
 
-The addresses generation is based on [BIP32 Standard](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki). <br>
-Starting from a **Seed** the system will generate keys in a deterministic way. However, from the outside, all the  keys will be unrelated from each other.<br>
-This Seed is generated at the first run of the Entity and is based on a strong **RNG**.<br>
-This is also the reason why the Seed could be considered the **Identity of the Entity**.
+Keys (unique identities) are derived from the Seed in a hierarchical deterministic way. The procedure strictly follows [BIP32 Standard](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki). <br>
 
-Below is reported how the BIP32's hierarchy is used inside the Uniquid Framework.
+Each key is never used more than once: each Contract requires a new key generated.
+
+The derivation process of the keys follows the [BIP44 Standard](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) with some adjustments.<br>
+
+This is how the hierarchy is used inside the Uniquid Framework.
 
 * **m/44'/0'** Path for the **XPub** exported in Imprinting phase.
 * **m/44'/0'/0/0** is the point from where starts the hierarchy dedicated to the Provider
@@ -34,7 +35,6 @@ Below is reported how the BIP32's hierarchy is used inside the Uniquid Framework
 * **m/44'/0'/0/1** is the point from where start the hierarchy dedicated to the User
 * **m/44'/0'/0/1/0** constant 0 is used for external chain: addresses that are meant to be visible outside of the wallet (e.g. for receiving contracts)
 * **m/44'/0'/0/1/0/n** are the addresses where the token for the User's contracts are sent.
-
 
 This schema is **mandatory** like is mandatory that **no address can appear in more than one contract**.
 
