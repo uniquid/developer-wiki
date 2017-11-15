@@ -36,7 +36,7 @@ mvn clean package install
 ```
 * pull uniquid's uidcore-java project via git from https://github.com/uniquid/uidcore-java and sync with branch:
 ```
-'develop_refactory_state'
+'master'
 ```
 * perform a full build and install artifacts with maven: mvn clean package install
 * now you have all pre-requirements: uniquid's bitcoinj, uidcore-java and uniquid-utils libraries ready to be used in your applications: you can start to create an Uniquid Node
