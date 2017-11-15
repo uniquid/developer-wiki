@@ -5,7 +5,7 @@ Introduction
 ------------
 The UniquID framework defines the concepts of **Entity** and **Contract**.
 
-An Entity is a software component that contains:
+An Entity is a software component designed to be embeddedable inside an application that offer an advanced and customizable framework for authentication. It is composed by:
 
 * cryptographic ID: the unique identity - is a mechanism that uses ECDSA to digitally sign data. Keys are used to sign Contracts (and generally any digest) and verify digital signatures. This component should use a secure element to manage securely the cryptographic keys.
 * contract exchanger and validator: a component that allow to exchange Contracts between Entities and validate their content.
@@ -30,7 +30,10 @@ Uniquid Entity
  --------------------------------------------- ---------------------------- ------------------------- 
 ```
 
-A Contract represents an agreement between two Entities and defines how they can interact. The contract contains the public identities of the parties used to provide the identification mechanism and a payload. The payload contains what the user application code needs to enforce via the contract.
+Entities interacts with each other in order to perform authentication on behalf of the user. Entities use data present in Contracts to enforce security policies.
+
+
+A Contract represents an agreement between two Entities and defines how they can interact. The contract contains the public identities of the parties involved in the authentication mechanism and a payload. The payload contains what the provider application code needs to enforce.
 
 This is a representation of a Contract:
 
