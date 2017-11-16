@@ -1,6 +1,5 @@
-Index
-------------
 Developer Wiki ([0.3.4](/history.md))
+------------
 
 ## Index
 
