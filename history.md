@@ -1,3 +1,9 @@
+Version 0.3.5
+---
+### Changelog
+* Update Android APK for Orchestrator withou PIN Pad.
+___
+
 Version 0.3.4
 ---
 ### Changelog
