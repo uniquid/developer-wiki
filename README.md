@@ -1,13 +1,11 @@
-Index
-------------
 Developer Wiki ([0.3.4](/history.md))
+------------
 
 ## Index
 
 * [Architecture](/architecture.md)
 * [Library Design](/library-design.md)
 * [Repository List](/repository-list.md)
-* [Testing Seed](/testing-seeds.md)
 * [System Reserved](/system-reserved.md)
 * [Packages](/packages.md)
 
