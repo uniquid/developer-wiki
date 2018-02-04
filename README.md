@@ -1,4 +1,4 @@
-Developer Wiki ([0.3.5](/history.md))
+Developer Wiki ([0.4.0](/history.md))
 ------------
 
 ## Index

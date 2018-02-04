@@ -1,3 +1,8 @@
+Version 0.4.0
+---
+### Changelog
+* Added **Compatibility Grid** page to show all tested combination.
+___
 Version 0.3.5
 ---
 ### Changelog
