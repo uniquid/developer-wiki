@@ -1,4 +1,4 @@
-Developer Wiki ([0.3.5](/history.md))
+Developer Wiki ([0.4.0](/history.md))
 ------------
 
 ## Index
@@ -8,6 +8,7 @@ Developer Wiki ([0.3.5](/history.md))
 * [Repository List](/repository-list.md)
 * [System Reserved](/system-reserved.md)
 * [Packages](/packages.md)
+* [Compatibility Grid](/compatibility_grid.md)
 
 ---
 
