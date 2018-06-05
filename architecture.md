@@ -182,8 +182,8 @@ Where:<br>
 ```
 Where:<br>
 * **sender**: is the Provider Address of the contract with wich the Provider has granted the excution of the requested function.
-* **result**: is the result of the function invoked.Coud be a structured JSON. The interpretation of the params value is demanded to the immplementation of the method. Errors form the method must be returned in this string.
-* **error**: is number that report a message error (i.e. Invalid JSON). If the message is correct, decodified, exist a contract that allow the function execution and the function was executed then this value is 0.
+* **result**: is the result of the function invoked. Coud be a structured JSON. The interpretation of the params value is demanded to the immplementation of the method. Errors form the method must be returned in this string.
+* **error**: is a number that represents the status of the execution. It's 0 in case everything is ok, 3 in case the requested function is not available in the provider, 4 in case of a generic error. In case of error, the **result** field contains the reason.
 * **id**: is a **nonce** that must correspond with the same parameter on request. Keep a relationship between request and response.
 
 ### Process
